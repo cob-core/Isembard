@@ -1,0 +1,5 @@
+C:\Users\Caleb\Downloads\Isembard-exe\Isembard.pdb
+C:\Users\Caleb\Downloads\Isembard-exe\av_libglesv2.dll
+C:\Users\Caleb\Downloads\Isembard-exe\libHarfBuzzSharp.dll
+C:\Users\Caleb\Downloads\Isembard-exe\libSkiaSharp.dll
+C:\Users\Caleb\Downloads\Isembard-exe\Isembard.exe
