@@ -227,3 +227,4 @@ C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\win-x64\msc
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\win-x64\mscordbi.dll
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\win-x64\mscorrc.dll
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\win-x64\msquic.dll
+C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Release\net8.0\win-x64\Isembard.sourcelink.json

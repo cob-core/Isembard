@@ -66,3 +66,4 @@ C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\refint\Avalon
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.csproj.Up2Date
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.genruntimeconfig.cache
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\ref\Isembard.dll
+C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.sourcelink.json
