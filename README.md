@@ -1,7 +1,6 @@
 # Isembard
 #### The Victoria 3 Crash Log Interpreter
-![image](https://github.com/user-attachments/assets/4b032b5b-8b53-433a-9f6a-eee52d183009)
-
+![image](https://github.com/user-attachments/assets/ab874cbd-cf7b-4dad-87e5-7881b219005d)
 
 
 ## Who?
