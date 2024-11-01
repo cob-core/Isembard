@@ -1,0 +1,2 @@
+C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\linux-x64\publish\Isembard.pdb
+C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Release\net8.0\linux-x64\publish\Isembard

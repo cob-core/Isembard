@@ -117,6 +117,7 @@ public static void ReadLogs(ObservableCollection<CrashLog> crashLogs, MainWindow
                 {
                     isVictoria = 1;
                     Console.WriteLine("Found victoria3.exe in dxdiag.");
+                    viewModel.FinalReport.ReportSummary += "Victoria 3 crashes detected. Victoria 3 may be the culprit." + Environment.NewLine;
                     if (report.Properties.TryGetValue("Event Name", out var victoriaEventName))
                     {
                         switch (victoriaEventName)
@@ -144,13 +145,16 @@ public static void ReadLogs(ObservableCollection<CrashLog> crashLogs, MainWindow
                             switch (eventName)
                             {
                                 case "APPCRASH":
-                                    Console.WriteLine("Application crash detected.");
+                                    Console.WriteLine("Application crash detected. Will find out why.");
                                     break;
                                 case "BlueScreen":
-                                    Console.WriteLine("System blue screen error detected.");
+                                    Console.WriteLine("System blue screen error detected. Run Windows & driver updates, and BIOS. Run DISM then SFC scan. Otherwise, hardware issue.");
                                     break;
                                 case "RADAR_PRE_LEAK_64":
                                     Console.WriteLine("Memory issue detected.");
+                                    break;
+                                case "LiveKernelEvent":
+                                    Console.WriteLine("System issue detected. Run DISM then SFC scan. Otherwise, hardware error.");
                                     break;
                                 default:
                                     Console.WriteLine($"Unknown event: {eventName}");

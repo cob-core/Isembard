@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Isembard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d30e4237f230f5538ee87eedee3456a6fcf97ed1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cfa60f471afb7727eaf7014f82885a5f3b6630b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Isembard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Isembard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

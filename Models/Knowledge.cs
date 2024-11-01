@@ -30,6 +30,10 @@ public static class Knowledge
             "dx11",
             "Issue is graphics related. Are you graphics drivers up to date?"
         },
+            {
+                "Failed creating fence",
+                "Do you have mods loaded? If not reinstall the game. "
+            },
         };
     }
 }
