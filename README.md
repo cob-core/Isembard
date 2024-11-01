@@ -1,7 +1,8 @@
 # Isembard
 ### The Victoria 3 Crash Log Interpreter
 #### ** THIS IS CURRENTLY A WORK IN PROGRESS. IT IS EXTREMELY BUGGY AND UNPOLISHED. **
-![image](https://github.com/user-attachments/assets/ab874cbd-cf7b-4dad-87e5-7881b219005d)
+![image](https://github.com/user-attachments/assets/0707a694-ba40-42a2-b45d-87df4217530b)
+
 
 
 ## Who?
