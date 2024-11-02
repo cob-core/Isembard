@@ -24,5 +24,6 @@ If it's a game bug, it will tell you, if it's a mod you've just started using, i
 ## To-Do
 
 - Mod support. Detect which mod caused a crash.
+- Multi-game support. It appears at least Stellaris and CK3 use similar crash logs.
 - Read the exception file.
 - Give it a good ol' polish.
