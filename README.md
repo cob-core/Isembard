@@ -2,6 +2,7 @@
 ### The Victoria 3 Crash Log Interpreter
 #### ** THIS IS CURRENTLY A WORK IN PROGRESS. IT IS EXTREMELY BUGGY AND UNPOLISHED. **
 It turns out this may also work pretty well with other Paradox games as they all use a similar logging system. Compatbility will be coming in upcoming patches.
+
 ![image](https://github.com/user-attachments/assets/0707a694-ba40-42a2-b45d-87df4217530b)
 
 
