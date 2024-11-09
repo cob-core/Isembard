@@ -95,11 +95,7 @@ public partial class MainWindowViewModel : ViewModelBase
         CrashInterpreter.ReadLogs(CrashLogs, this);
         
         // Use the last error log for matching
-        string lastErrorLog = CrashLogs.SelectMany(cl => cl.ErrorContent).LastOrDefault();
-        if (!string.IsNullOrEmpty(lastErrorLog))
-        {
-            await CrashInterpreter.AnalyzeModsAgainstErrorAsync(ModsPath, lastErrorLog, this);
-        }
+        await CrashInterpreter.AnalyzeModsAgainstErrorAsync(ModsPath, CrashLogs, this);
         
         Console.WriteLine($"Updated Final Report Contents: {FinalReport.ReportContents}");
         Console.WriteLine($"Updated Final Summary Contents: {FinalReport.ReportSummary}");

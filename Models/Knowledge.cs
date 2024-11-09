@@ -32,7 +32,11 @@ public static class Knowledge
         },
             {
                 "Failed creating fence",
-                "Do you have mods loaded? If not reinstall the game. "
+                "Do you have mods loaded? If not reinstall the game."
+            },
+            {
+                "jomini_script_system",
+                "Do you have mods loaded? If you don't it may be a game bug. Investigating.."
             },
         };
     }

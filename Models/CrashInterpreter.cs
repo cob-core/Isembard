@@ -208,100 +208,105 @@ public static class CrashInterpreter
     }
 
 
-    public static async Task AnalyzeModsAgainstErrorAsync(string modDirectoryPath, string lastError,
-        MainWindowViewModel viewModel)
+public static async Task AnalyzeModsAgainstErrorAsync(string modDirectoryPath, ObservableCollection<CrashLog> crashLogs, MainWindowViewModel viewModel)
+{
+    Console.WriteLine("Starting AnalyzeModsAgainstErrorAsync method.");
+    if (!Directory.Exists(modDirectoryPath))
     {
-        Console.WriteLine("Starting AnalyzeModsAgainstErrorAsync method.");
-        if (Directory.Exists(modDirectoryPath) && !string.IsNullOrEmpty(lastError))
+        Console.WriteLine("Mod directory not found.");
+        viewModel.FinalReport.AddToFinalReportSummary("Mod directory not found.");
+        return;
+    }
+
+    // Define a regex to capture only the file name with extension after "file:", ignoring any path or extra details
+    var fileRegex = new Regex(@"file:\s*(?:.*/|.*\\)?([^/\\\s:]+?\.\S+)");
+
+    // Loop through each crash log and check DebugContent and ErrorContent
+    foreach (var crashLog in crashLogs)
+    {
+        var filesToCheck = new List<string>();
+
+        // Extract file names from DebugContent
+        foreach (var line in crashLog.DebugContent)
         {
-            Console.WriteLine($"Mod directory path: {modDirectoryPath}");
-            Console.WriteLine($"Last error: {lastError}");
-
-            // Extract the file name from the second pair of square brackets, ignoring anything after ':'
-            var regex = new Regex(@"\[.*?\]\s*\[(.*?)(?::.*?)?\]");
-            var match = regex.Match(lastError);
-
-            if (match.Success && match.Groups.Count > 1)
+            var match = fileRegex.Match(line);
+            if (match.Success)
             {
-                string fileNameToMatch = match.Groups[1].Value.Trim();
-                Console.WriteLine($"Extracted file name to match: {fileNameToMatch}");
+                string extractedFileName = match.Groups[1].Value;
+                Console.WriteLine($"Extracted file name from DebugContent: {extractedFileName}");
+                filesToCheck.Add(extractedFileName);
+            }
+        }
 
-                if (!string.IsNullOrEmpty(fileNameToMatch))
+        // Extract file names from ErrorContent
+        foreach (var line in crashLog.ErrorContent)
+        {
+            var match = fileRegex.Match(line);
+            if (match.Success)
+            {
+                string extractedFileName = match.Groups[1].Value;
+                Console.WriteLine($"Extracted file name from ErrorContent: {extractedFileName}");
+                filesToCheck.Add(extractedFileName);
+            }
+        }
+
+        // If no files were found in this crash log, continue to the next
+        if (filesToCheck.Count == 0)
+        {
+            Console.WriteLine("No files to check in this crash log.");
+            continue;
+        }
+
+        // Get all files in the mod directory asynchronously
+        var modFiles = await Task.Run(() => Directory.GetFiles(modDirectoryPath, "*.*", SearchOption.AllDirectories));
+        Console.WriteLine($"Number of files found in mod directory: {modFiles.Length}");
+
+        bool matchFound = false;
+
+        // Check each extracted file name against the files in the mod directory
+        foreach (var fileToCheck in filesToCheck)
+        {
+            foreach (var modFile in modFiles)
+            {
+                string modFileName = Path.GetFileName(modFile);
+
+                // Check if the extracted file name matches the mod file name
+                if (fileToCheck.Equals(modFileName, StringComparison.OrdinalIgnoreCase))
                 {
-                    // Get all files in the mod directory asynchronously
-                    var modFiles = await Task.Run(() =>
-                        Directory.GetFiles(modDirectoryPath, "*.*", SearchOption.AllDirectories));
-                    Console.WriteLine($"Number of files found in mod directory: {modFiles.Length}");
+                    // Attempt to read the metadata.json file in the mod folder
+                    string modFolderPath = Path.GetDirectoryName(modFile);
+                    string metadataFilePath = Path.Combine(modFolderPath, "metadata.json");
 
-                    bool matchFound = false;
-                    foreach (var file in modFiles)
+                    if (File.Exists(metadataFilePath))
                     {
-                        string fileName = Path.GetFileName(file);
-
-                        // Check if the file name matches the extracted file name from the error log
-                        if (fileNameToMatch.Equals(fileName, StringComparison.OrdinalIgnoreCase))
+                        try
                         {
-                            // Attempt to read the metadata.json file in the mod folder
-                            string modFolderPath = Path.GetDirectoryName(file);
-                            string metadataFilePath = Path.Combine(modFolderPath, "metadata.json");
+                            var metadataContent = await File.ReadAllTextAsync(metadataFilePath);
+                            var metadataJson = JObject.Parse(metadataContent);
+                            string modName = metadataJson["name"]?.ToString() ?? "Unknown Mod Name";
 
-                            if (File.Exists(metadataFilePath))
-                            {
-                                try
-                                {
-                                    var metadataContent = await File.ReadAllTextAsync(metadataFilePath);
-                                    var metadataJson = JObject.Parse(metadataContent);
-                                    string modName = metadataJson["name"]?.ToString() ?? "Unknown Mod Name";
-
-                                    string message =
-                                        $"Potential Mod Issue Detected: '{modName}' may be causing the problem due to '{fileNameToMatch}' error.";
-                                    Console.WriteLine(message);
-                                    viewModel.FinalReport.AddToFinalReportSummary(message);
-                                    matchFound = true;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"Error reading metadata.json: {ex.Message}");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("metadata.json not found in the mod folder.");
-                            }
+                            string message = $"Potential Mod Issue Detected: '{modName}' may be causing the problem due to '{fileToCheck}' error.";
+                            Console.WriteLine(message);
+                            viewModel.FinalReport.AddToFinalReportSummary(message);
+                            matchFound = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error reading metadata.json: {ex.Message}");
                         }
                     }
-
-                    if (!matchFound)
+                    else
                     {
-                        Console.WriteLine("No matching mods found for the extracted file name.");
-                        viewModel.FinalReport.AddToFinalReportSummary(
-                            "No matching mods found for the extracted file name from the last error log.");
-                    }
-
-                    if (modFiles.Length == 0)
-                    {
-                        Console.WriteLine("No mods found in the directory.");
-                        viewModel.FinalReport.AddToFinalReportSummary(
-                            "No mods found in the directory, but the crash log indicates mods could be causing the issue.");
+                        Console.WriteLine("metadata.json not found in the mod folder.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("No valid file name found in the last error log for analysis.");
-                    viewModel.FinalReport.AddToFinalReportSummary(
-                        "No valid file name found in the last error log for analysis.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("No file reference found in the last error log.");
-                viewModel.FinalReport.AddToFinalReportSummary("No file reference found in the last error log.");
             }
         }
-        else
+
+        if (!matchFound)
         {
-            Console.WriteLine("Mod directory not found or the last error is empty.");
-            viewModel.FinalReport.AddToFinalReportSummary("Mod directory not found or the last error is empty.");
+            Console.WriteLine("No matching mods found for the extracted files.");
+            viewModel.FinalReport.AddToFinalReportSummary("No matching mods found for the extracted files from the last error log.");
         }
     }
-}
+}}
