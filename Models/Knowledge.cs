@@ -16,7 +16,7 @@ public static class Knowledge
             },
             {
                 "Assertion failed: Failed to create lookup!",
-                "Do you have mods loaded? If not, this could be a game bug. Please report on Paradox forums."
+                "Do you have mods loaded? If you do, it's a mod but we can't tell which one. If not, this could be a game bug. Please report on Paradox forums."
             },
             {
                 "Data error in loc string",

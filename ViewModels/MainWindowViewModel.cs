@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -28,6 +29,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public Report _finalReport;
     [ObservableProperty]
     public string _selectedCrashLog;
+    [ObservableProperty]
+    private string _modsPath;
 
     private ObservableCollection<string> _crashLogCollection;
 
@@ -60,22 +63,43 @@ public partial class MainWindowViewModel : ViewModelBase
             CrashLogCollection.Add(crashLog.LogName);
         }
     }
-
-
     
     [RelayCommand]
     public void LoadCrashLogsCommand()
     {
         LoadCrashLogsAsync(SelectedCrashLog);
     }
+    
     [RelayCommand]
-    public void InterpretCrashCommand()
+    public void LoadModsCommand()
     {
+        if (Directory.Exists(ModsPath))
+        {
+            Console.WriteLine($"Mods directory loaded: {ModsPath}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid mods directory path.");
+        }
+    }
+    
+    [RelayCommand]
+    public async void InterpretCrashCommand()
+    {
+        FinalReport.ReportContents = string.Empty;
+        FinalReport.ReportSummary = string.Empty;
         string dxDiagLogPath = Path.Combine(Path.GetTempPath(), "dxdiag_output.txt");
         LogInterpreter.GenerateDxDiagLog();
         var ErrorReports = LogInterpreter.ParseDxDiagLog(dxDiagLogPath);
         CrashInterpreter.AnalyzeErrorReports(ErrorReports, this);
         CrashInterpreter.ReadLogs(CrashLogs, this);
+        
+        // Use the last error log for matching
+        string lastErrorLog = CrashLogs.SelectMany(cl => cl.ErrorContent).LastOrDefault();
+        if (!string.IsNullOrEmpty(lastErrorLog))
+        {
+            await CrashInterpreter.AnalyzeModsAgainstErrorAsync(ModsPath, lastErrorLog, this);
+        }
         
         Console.WriteLine($"Updated Final Report Contents: {FinalReport.ReportContents}");
         Console.WriteLine($"Updated Final Summary Contents: {FinalReport.ReportSummary}");
@@ -116,7 +140,7 @@ public partial class MainWindowViewModel : ViewModelBase
         
         public void AddToFinalReportSummary(string addition)
         {
-            ReportSummary += addition + Environment.NewLine;
+            ReportSummary += Environment.NewLine + addition;
         }
     }
     

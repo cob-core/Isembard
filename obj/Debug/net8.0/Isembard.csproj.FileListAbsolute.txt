@@ -67,3 +67,4 @@ C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.cspr
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.genruntimeconfig.cache
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\ref\Isembard.dll
 C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\obj\Debug\net8.0\Isembard.sourcelink.json
+C:\Users\Caleb\OneDrive\Desktop\Projects\Isembard\bin\Debug\net8.0\Newtonsoft.Json.dll

@@ -20,12 +20,18 @@
     </Design.DataContext>
     <Viewbox Stretch="Uniform" StretchDirection="Both" VerticalAlignment="Top">
         <StackPanel Margin="20">
-            <Image Margin="0,20,0,60" Source="/Assets/Isembard_title.png" Height="300" Width="600"></Image>
+            <Image Margin="0,0,0,20" Source="/Assets/Isembard_title.png" Height="300" Width="600"></Image>
             <TextBlock Margin="0 5" FontSize="18" FontWeight="SemiBold" RenderOptions.BitmapInterpolationMode="HighQuality">Victoria 3 Crash Log Directory</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox Width="600" Text="{Binding CrashLogsPath, Mode=TwoWay}" 
                          Watermark="Default Directory: %userprofile%\Documents\Paradox Interactive\Victoria 3\crashes"/>
                 <Button Command="{Binding LoadCrashLogsCommand}">Review</Button>
+            </StackPanel>
+            <TextBlock Margin="0 5" FontSize="18" FontWeight="SemiBold" RenderOptions.BitmapInterpolationMode="HighQuality">Victoria 3 Mods Folder Directory</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="600" Text="{Binding ModsPath, Mode=TwoWay}" 
+                         Watermark="Default Directory: C:\Program Files (x86)\Steam\steamapps\workshop\content\529340\"/>
+                <Button Command="{Binding LoadModsCommand}">Review</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
