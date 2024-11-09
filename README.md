@@ -1,31 +1,38 @@
 # Isembard
 ### The Victoria 3 Crash Log Interpreter
-#### ** THIS IS CURRENTLY A WORK IN PROGRESS. IT IS EXTREMELY BUGGY AND UNPOLISHED. **
-It turns out this may also work pretty well with other Paradox games as they all use a similar logging system. Compatbility will be coming in upcoming patches.
+Isembard reads the log files from the crashes folder of your game, analyses their contents, and generates reasoning for why the game is crashing.
 
-![image](https://github.com/user-attachments/assets/0707a694-ba40-42a2-b45d-87df4217530b)
+> THIS IS CURRENTLY A WORK IN PROGRESS. IT IS EXTREMELY BUGGY AND UNPOLISHED.
+> 
+> MOD SUPPORT HAS BEEN VERY RECENTLY ADDED BUT NOT WELL-TESTED.
+
+![image](https://github.com/user-attachments/assets/8e19c486-fc06-44e2-af8b-4ff6371f3d1e)
 
 
-
-## Who?
-Isembard. The application is named after Isambard Kingdom Brunel, a great engineer from the Victorian era. I created an app to engineer my way out of tricky situations; including an unstable game.
-
-## What?
-When you're Victoria 3 game crashes and you're at a loss, maybe it does it once every couple of months, maybe it does it every day 2pm, maybe it was just once, it's always nice to know why.
-
-## Why?
-Whether we are modding, we've just got our latest DLC, or maybe our computer has a persistent issue, understanding the why helps us find out the what, or the how.
-
-## How?
+## Description
 Luckily, Isembard doesn't just spit out errors in your face and go 'deal with it'. It understands what the errors you get mean and how that led to the crash. From this, it suggests the best solution and how to move forward. 
 If it's a game bug, it will tell you, if it's a mod you've just started using, it will tell you that too. Even if it's not Victoria 3 with the issue, it'll tell you that too. Bluescreens, driver issues, it will help you get Victoria 3 back up and running.
 
-...and no, it doesn't use AI to do so.
+It does not parse the crash logs using AI.
 
+## How to Use
+### Windows
+1. Download the .exe from the releases.
+2. Run the .exe! 
+
+The app is self-contained and can run with the single file.
+
+### Linux
+1. Download the file from the releases.
+2. Run the app via terminal. .\Isembard.
+
+Apologies, I have not tested the linux binary. Please let me know if there are issues.
+Please note the default file paths do not apply to Linux.
 
 ## To-Do
 
-- Mod support. Detect which mod caused a crash.
-- Multi-game support. It appears at least Stellaris and CK3 use similar crash logs.
+- Multi-game support. It appears most of the other Paradox games use the same log format. This tool should (in theory) also anaylse those games' crashes.
+- Check mod conflicts.
+- Check mod dependencies.
 - Read the exception file.
 - Give it a good ol' polish.
