@@ -33,7 +33,7 @@ Please note the default file paths do not apply to Linux.
 ## To-Do
 
 - Multi-game support. It appears most of the other Paradox games use the same log format. This tool should (in theory) also anaylse those games' crashes.
-- Added a 'Deep Analysis' button which reads through the entire crash log. Currently the app reads through the last 20 lines in order to find critical errors.
+- Add a 'Deep Analysis' button which reads through the entire crash log. Currently the app reads through the last 20 lines in order to find critical errors but it will struggle with mass errors that don't contain file paths.
 - Check mod conflicts.
 - Check mod dependencies.
 - Read the exception file.
