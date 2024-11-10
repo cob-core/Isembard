@@ -13,7 +13,8 @@ Isembard reads the log files from the crashes folder of your game, analyses thei
 Luckily, Isembard doesn't just spit out errors in your face and go 'deal with it'. It understands what the errors you get mean and how that led to the crash. From this, it suggests the best solution and how to move forward. 
 If it's a game bug, it will tell you, if it's a mod you've just started using, it will tell you that too. Even if it's not Victoria 3 with the issue, it'll tell you that too. Bluescreens, driver issues, it will help you get Victoria 3 back up and running.
 
-It does not parse the crash logs using AI.
+### AI Usage
+It does not parse the crash logs using AI, though parts of the code is written by ChatGPT and modified.
 
 ## How to Use
 ### Windows
@@ -32,6 +33,7 @@ Please note the default file paths do not apply to Linux.
 ## To-Do
 
 - Multi-game support. It appears most of the other Paradox games use the same log format. This tool should (in theory) also anaylse those games' crashes.
+- Added a 'Deep Analysis' button which reads through the entire crash log. Currently the app reads through the last 20 lines in order to find critical errors.
 - Check mod conflicts.
 - Check mod dependencies.
 - Read the exception file.
