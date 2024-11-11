@@ -2,7 +2,7 @@
 ### The Victoria 3 Crash Log Interpreter
 Isembard reads the log files from the crashes folder of your game, analyses their contents, and generates reasoning for why the game is crashing.
 
-> Please leave your crash folder in the 'Issues' section if you get inconclusive results! I'll see what's going on with it and hopefully improve it's detection!
+> Please leave your crash folder in the 'Issues' section if you get inconclusive results! I'll see what's going on with it and hopefully improve it's detection.
 
 ![image](https://github.com/user-attachments/assets/8e19c486-fc06-44e2-af8b-4ff6371f3d1e)
 
@@ -12,7 +12,7 @@ Luckily, Isembard doesn't just spit out errors in your face and go 'deal with it
 If it's a game bug, it will tell you, if it's a mod you've just started using, it will tell you that too. Even if it's not Victoria 3 with the issue, it'll tell you that too. Bluescreens, driver issues, it will help you get Victoria 3 back up and running.
 
 ### AI Usage
-It does not parse the crash logs using AI, though parts of the code is written by ChatGPT and modified.
+It does not parse the crash logs using AI, though parts of the code is written with the help of ChatGPT.
 
 ## How to Use
 ### Windows
@@ -26,7 +26,7 @@ The app is self-contained and can run with the single file.
 2. Run the app via terminal. .\Isembard.
 
 Apologies, I have not tested the linux binary. Please let me know if there are issues.
-Please note the default file paths do not apply to Linux.
+Please note the default file paths do not work on Linux.
 
 ## To-Do
 
