@@ -1,8 +1,9 @@
 # Isembard
 ### The Victoria 3 Crash Log Interpreter
 Isembard reads the log files from the crashes folder of your game, analyses their contents, and generates reasoning for why the game is crashing.
+> This application is extremely work in progress. It is buggy and unpolished.
+> > Please leave your crash folder in the 'Issues' section if you get inconclusive results! I'll see what's going on with it and hopefully improve it's detection.
 
-> Please leave your crash folder in the 'Issues' section if you get inconclusive results! I'll see what's going on with it and hopefully improve it's detection.
 
 ![image](https://github.com/user-attachments/assets/8e19c486-fc06-44e2-af8b-4ff6371f3d1e)
 
